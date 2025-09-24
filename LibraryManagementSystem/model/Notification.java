@@ -6,13 +6,38 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Notification {
+    private String borrowerName;  // Tên người mượn
+    private String borrowDate;    // Ngày mượn
+    private String bookId;        // ID sách
+    private String returnDate;    // Ngày hẹn trả
+    private int fine;             // Tiền phạt
+
     private static final String FILE_PATH = "notifications.txt";
 
+    // Constructor
+    public Notification(String borrowerName, String borrowDate, String bookId, String returnDate, int fine) {
+        this.borrowerName = borrowerName;
+        this.borrowDate = borrowDate;
+        this.bookId = bookId;
+        this.returnDate = returnDate;
+        this.fine = fine;
+    }
+
+    // toString để lưu vào file
+    @Override
+    public String toString() {
+        return "User: " + borrowerName +
+               " | BorrowDate: " + borrowDate +
+               " | BookID: " + bookId +
+               " | ReturnDate: " + returnDate +
+               " | Fine: " + fine;
+    }
+
     // Ghi thông báo vào file
-    public static void addNotification(String message) {
+    public static void addNotification(Notification n) {
         try (FileWriter fw = new FileWriter(FILE_PATH, true);
              BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(message);
+            bw.write(n.toString());
             bw.newLine();
             System.out.println(" Đã lưu thông báo!");
         } catch (IOException e) {
@@ -76,13 +101,24 @@ public class Notification {
             System.out.print("👉 Chọn: ");
 
             choice = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // tránh trôi lệnh
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nhập thông báo: ");
-                    String message = scanner.nextLine();
-                    addNotification(message);
+                    System.out.print("Tên người mượn: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Ngày mượn (yyyy-MM-dd): ");
+                    String borrowDate = scanner.nextLine();
+                    System.out.print("ID sách: ");
+                    String bookId = scanner.nextLine();
+                    System.out.print("Ngày hẹn trả (yyyy-MM-dd): ");
+                    String returnDate = scanner.nextLine();
+                    System.out.print("Tiền phạt: ");
+                    int fine = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Notification n = new Notification(name, borrowDate, bookId, returnDate, fine);
+                    addNotification(n);
                     break;
 
                 case 2:
@@ -102,7 +138,7 @@ public class Notification {
                     break;
 
                 case 4:
-                    System.out.print("Nhập từ khóa cần tra cứu: ");
+                    System.out.print("Nhập từ khóa cần tra cứu (tên, id sách...): ");
                     String keyword = scanner.nextLine();
                     searchNotifications(keyword);
                     break;
