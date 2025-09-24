@@ -1,8 +1,6 @@
 package model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Notification {
@@ -45,19 +43,29 @@ public class Notification {
         }
     }
 
-    // Đọc toàn bộ thông báo từ file
-    public static List<String> getNotifications() {
-        List<String> notifications = new ArrayList<>();
+    // Đọc toàn bộ thông báo từ file -> mảng String[]
+    public static String[] getNotifications() {
+        String[] notifications = new String[0]; // mảng rỗng ban đầu
         try (FileReader fr = new FileReader(FILE_PATH);
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
-                notifications.add(line);
+                notifications = addToArray(notifications, line);
             }
         } catch (IOException e) {
             System.err.println(" Lỗi khi đọc thông báo: " + e.getMessage());
         }
         return notifications;
+    }
+
+    // Hàm hỗ trợ: thêm phần tử vào mảng (tăng kích thước)
+    private static String[] addToArray(String[] arr, String value) {
+        String[] newArr = new String[arr.length + 1];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[arr.length] = value;
+        return newArr;
     }
 
     // Xóa toàn bộ nội dung file
@@ -72,12 +80,12 @@ public class Notification {
 
     // Tra cứu thông báo theo từ khóa
     public static void searchNotifications(String keyword) {
-        List<String> notifications = getNotifications();
+        String[] notifications = getNotifications();
         boolean found = false;
         System.out.println("\n🔍 Kết quả tra cứu với từ khóa: \"" + keyword + "\"");
-        for (int i = 0; i < notifications.size(); i++) {
-            if (notifications.get(i).toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println((i + 1) + ". " + notifications.get(i));
+        for (int i = 0; i < notifications.length; i++) {
+            if (notifications[i].toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println((i + 1) + ". " + notifications[i]);
                 found = true;
             }
         }
@@ -123,12 +131,12 @@ public class Notification {
 
                 case 2:
                     System.out.println("\n📜 Lịch sử mượn sách:");
-                    List<String> history = getNotifications();
-                    if (history.isEmpty()) {
+                    String[] history = getNotifications();
+                    if (history.length == 0) {
                         System.out.println("(Trống)");
                     } else {
-                        for (int i = 0; i < history.size(); i++) {
-                            System.out.println((i + 1) + ". " + history.get(i));
+                        for (int i = 0; i < history.length; i++) {
+                            System.out.println((i + 1) + ". " + history[i]);
                         }
                     }
                     break;
