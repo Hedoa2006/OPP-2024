@@ -1,56 +1,66 @@
 package model;
 
+import java.util.Scanner;
+
 public class Reader {
     private String id;
     private String name;
-    private String ngaysinh;
-    private String diachi;
+    private String year_of_birth;
+    private String address;
     private String email;
-    private int sdt;
-    //Constructor 
-    public Reader(String id, String name, String ngaysinh, String diachi, int sdt, String email){
+     //Constructor
+    public Reader(String id, String name, String year_of_birth, String address, String email){
         this.id = id;
         this.name = name;
-        this.ngaysinh = ngaysinh;
-        this.diachi = diachi;
-        this.sdt = sdt;
+        this.year_of_birth = year_of_birth;
+        this.address = address;
         this.email = email;
     }
-    // Getters, setters
-    public String getId(){
-        return id;
+    // Input & Output
+    public void input(){
+        Scanner sc = new Scanner(System.in);
+        id = sc.nextLine();
+        name = sc.nextLine();
+        year_of_birth = sc.nextLine();
+        address = sc.nextLine();
+        email = sc.nextLine();
     }
+    public void output(){
+        System.out.print(id);
+        System.out.print(name);
+        System.out.print(year_of_birth);
+        System.out.print(address);
+        System.out.println(email);
+    }
+    //Getter & Setter
     public void setId(String id){
         this.id = id;
     }
-    public String getName(){
-        return name;
+    public String getId(){
+        return id;
     }
     public void setName(String name){
         this.name = name;
     }
-    public String getNgaysinh(){
-        return ngaysinh;
+    public String getName(){
+        return name;
     }
-    public void setNgaysinh(String ngaysinh){
-        this.ngaysinh = ngaysinh;
+    public void setYear_of_birth(String year_of_birth){
+        this.year_of_birth = year_of_birth;
     }
-    public String getDiachi(){
-        return diachi;
+    public String getYear_of_birth(){
+        return year_of_birth;
     }
-    public void setDiachi(String diachi){
-        this.diachi = diachi;
+    public void setAddress(String address){
+        this.address = address;
     }
-    public String getEmail(){
-        return email;
+    public String getAddress(){
+        return address;
     }
     public void setEmail(String email){
         this.email = email;
     }
-    public int getSdt(){
-        return sdt;
-    }
-    public void setSdt(int sdt){
-        this.sdt = sdt;
+    public String getEmail(){
+        return email;
     }
 }

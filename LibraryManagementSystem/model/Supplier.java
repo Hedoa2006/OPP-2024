@@ -2,31 +2,31 @@ package model;
 
 import java.util.Scanner;
 
-public class Author {
+public class Supplier {
     private String id;
     private String name;
-    private String date;
     private String address;
+    private String contact;
      //Constructor
-    public Author(String id, String name, String date, String address){
+    public Supplier(String id, String name, String address, String contact){
         this.id = id;
         this.name = name;
-        this.date = date;
         this.address = address;
+        this.contact = contact;
     }
     // Input & Output
     public void input(){
         Scanner sc = new Scanner(System.in);
         id = sc.nextLine();
         name = sc.nextLine();
-        date = sc.nextLine();
         address = sc.nextLine();
+        contact = sc.nextLine();
     }
     public void output(){
         System.out.print(id);
         System.out.print(name);
-        System.out.print(date);
-        System.out.println(address);
+        System.out.print(address);
+        System.out.println(contact);
     }
     //Getter & Setter
     public void setId(String id){
@@ -41,16 +41,16 @@ public class Author {
     public String getName(){
         return name;
     }
-    public void setDate(String date){
-        this.date = date;
-    }
-    public String getDate(){
-        return date;
-    }
     public void setAddress(String address){
         this.address = address;
     }
     public String getAddress(){
         return address;
+    }
+    public void setContact(String contact){
+        this.contact = contact;
+    }
+    public String getContact(){
+        return contact;
     }
 }

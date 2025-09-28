@@ -2,31 +2,27 @@ package model;
 
 import java.util.Scanner;
 
-public class Author {
+public class PenaltyRule {
     private String id;
     private String name;
-    private String date;
-    private String address;
+    private String account;
      //Constructor
-    public Author(String id, String name, String date, String address){
+    public PenaltyRule(String id, String name, String account){
         this.id = id;
         this.name = name;
-        this.date = date;
-        this.address = address;
+        this.account = account;
     }
     // Input & Output
     public void input(){
         Scanner sc = new Scanner(System.in);
         id = sc.nextLine();
         name = sc.nextLine();
-        date = sc.nextLine();
-        address = sc.nextLine();
+        account = sc.nextLine();
     }
     public void output(){
         System.out.print(id);
         System.out.print(name);
-        System.out.print(date);
-        System.out.println(address);
+        System.out.println(account);
     }
     //Getter & Setter
     public void setId(String id){
@@ -41,16 +37,10 @@ public class Author {
     public String getName(){
         return name;
     }
-    public void setDate(String date){
-        this.date = date;
+    public void setAccount(String account){
+        this.account = account;
     }
-    public String getDate(){
-        return date;
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
-    public String getAddress(){
-        return address;
+    public String getAccount(){
+        return account;
     }
 }

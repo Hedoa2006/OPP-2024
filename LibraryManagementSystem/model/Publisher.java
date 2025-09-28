@@ -1,49 +1,56 @@
 package model;
 
+import java.util.Scanner;
+
 public class Publisher {
     private String id;
-    private String date_loan;
-    private String diachi;
-    private String reader_id;
-    private String staff_id;
-
-    public Publisher(String id, String date_loan, String diachi, String reader_id, String staff_id){
+    private String name;
+    private String date;
+    private String address;
+     //Constructor
+    public Publisher(String id, String name, String date, String address){
         this.id = id;
-        this.date_loan = date_loan;
-        this.diachi = diachi;
-        this.reader_id = reader_id;
-        this.staff_id = staff_id;
+        this.name = name;
+        this.date = date;
+        this.address = address;
     }
-
-    // Getters, setters, toString()
-    public String getId(){
-        return id;
+    // Input & Output
+    public void input(){
+        Scanner sc = new Scanner(System.in);
+        id = sc.nextLine();
+        name = sc.nextLine();
+        date = sc.nextLine();
+        address = sc.nextLine();
     }
+    public void output(){
+        System.out.print(id);
+        System.out.print(name);
+        System.out.print(date);
+        System.out.println(address);
+    }
+    //Getter & Setter
     public void setId(String id){
         this.id = id;
     }
-    public String getDateloan(){
-        return date_loan;
+    public String getId(){
+        return id;
     }
-    public void setDateloan(String date_loan){
-        this.date_loan = date_loan;
+    public void setName(String name){
+        this.name = name;
     }
-    public String getDatereturn(){
-        return diachi;
+    public String getName(){
+        return name;
     }
-    public void setDatereturn(String diachi){
-        this.diachi = diachi;
+    public void setDate(String date){
+        this.date = date;
     }
-    public String getReaderid(){
-        return reader_id;
+    public String getDate(){
+        return date;
     }
-    public void setReaderid(String reader_id){
-        this.reader_id = reader_id;
+    public void setAddress(String address){
+        this.address = address;
     }
-    public String getStaffid(){
-        return staff_id;
-    }
-    public void setStaffid(String staff_id){
-        this.staff_id = staff_id;
+    public String getAddress(){
+        return address;
     }
 }
